@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+ 	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Todos</title>
+ 	</head>
+ 	<body>
+        {% if user.is_authenticated %}
+            <h1>{{user.username}}'s todos</h1>
+            <br><br>
+            <section>List all todos here</section>
+            <ul>
+                <ol>
+                    {% for t in alltodos %}
+                        <!-- <li>{{t.title}}</li> -->
+                        <li>
+                            <a href="/todo/{{t.id}}">
+                                {% if t.isImportant %}<b>{% endif %}
+                                {{t.dateCreated}} {{t.title}}
+                                {% if t.isImportant %}</b>{% endif %}
+                                {% if t.description %} - {{t.description}} {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </ul>
+            <a href="/createNewTodo">Create new task</a>
+            <!-- <a href="/alltodos">See others tasks</a><br><br> -->
+
+            <form action="{% url 'logoutuser' %}" method="POST">
+                {% csrf_token %}
+                <button type='submit'>Logout</button>
+            </form>
+        {% else %}
+            <a href="#">Login</a>
+            <a href="register">Register</a>
+        {% endif %}
+ 	</body>
+</html>
+

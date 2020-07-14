@@ -1,0 +1,91 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>N A N C Y</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'nancy/css/styles.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap"
+        rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="{% static 'nancy/js/scripts.js' %}"></script>
+        
+</head>
+
+<body>
+   
+    <header>      
+        <a href="{% url 'nancy' %}" id="logo">N A N C Y</a> 
+        {% if user.is_authenticated %}     
+        <span id="userName">{{user.username}}</span>
+        {% endif %}
+        <a href="#" id="hamburger"></a>
+        <a href="#" id=notification></a>
+        <a href="#" id=baby-nav></a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'nancy' %}">Itamar</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li class="thisNavSection"><a href="{% url 'meals' %}"><b>Meals</b></a>
+                <ul>
+                    <li class="thisNavSection"><a href="{% url 'meals' %}">All Meals</a></li>
+                    <li><a href="#">Upcoming Meals</a></li>
+                    <li><a href="#">Meals History</a></li>
+                </ul>
+
+            </li>
+            <li><a href="#">Allergies</a></li>
+            <li><a href="#">Permissions</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Grocery List</a></li>
+            <li><a href="#">Reminders</a></li>
+        </ul>
+    </nav>
+
+    <main>
+   
+        <section id="meal-data">
+            <!-- <form action="#" method="POST">
+                {% csrf_token %}    
+            <h3>{{errMsg}}</h3> -->
+            <h2>{{form.mealName}}</h2>
+            <p id="meal-description">{{form.description}}  </p>
+            <div class="wrapped">
+                <article class="meal-img">
+                    <img src="{% static 'nancy/images/similak-big.jpg' %}" alt="similak-big" title="similak-big">
+                </article>
+                <article class="meal-info">
+                    <h3>Ingredients:</h3>
+                    <p id="ingredients">{{form.Ingredients}}</p>
+                    <h3>Recipe: </h3>
+                    <p id="recipe">60ml of hot water <br>for each Similak spoon</p><br>
+                    <h3>Created by:</h3>
+                    <p id="created-by">Sapir (Mom)</p>
+                    <h3>Date added:</h3>
+                    <p id="date-added">{{form.dateCreated}}</p>
+                    <h3>Feeding amount:</h3>
+                    <p id="feeding-amount">27 Times</p>
+                </article>
+            </div>
+
+            <form action="{% url 'deleteMeal' meal.id %}" method="POST">
+                {% csrf_token %}
+                <button type='submit'>Delete Task</button>
+            </form>  
+            <!-- <button type='submit' class="btn-medium" >EDIT</button>
+        </form> -->
+            <!-- <button class="btn-medium" onclick="location.href='#';">EDIT</button> -->
+        </section>
+
+
+
+    </main>
+
+</body>
+
+</html>

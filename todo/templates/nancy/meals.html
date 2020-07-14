@@ -1,0 +1,99 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/nancy/css/styles.css?{% now 'U' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'nancy/js/scripts.js' %}"></script>
+    <title>N A N C Y</title>
+</head>
+
+<body>
+    {% if user.is_authenticated %} 
+    <div class="wrapper">
+   
+    <header>
+        <a href="nancy" id="logo">N A N C Y</a>
+        
+        <span id="userName">{{user.username}}</span>
+ 
+        <a href="#" id="hamburger"></a>
+        <a href="#" id=notification></a>
+        <a href="#" id=baby-nav></a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="nancy">Itamar</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li class="thisNavSection"><a href="#"><b>Meals</b></a>
+                <ul>
+                    <li class="thisNavSection"><a href="#">All Meals</a></li>
+                    <li><a href="#">Upcoming Meals</a></li>
+                    <li><a href="#">Meals History</a></li>
+                </ul>
+
+            </li>
+            <li><a href="#">Allergies</a></li>
+            <li><a href="#">Permissions</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Grocery List</a></li>
+            <li><a href="#">Reminders</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <a href="createNewMeal">
+            <button id="button-createMeal"><span>+</span> CREATE MEAL</button>
+        </a>
+        <section id="mealCards">
+            <h2>ALL MEALS</h2>
+           
+           
+            {% for meal in allmeals %}
+            <article class="mealCard">
+               <a href="/mealData/{{meal.id}}" ></a>
+               <img class="mediumImg" src="{{meal.mediumIm.url}}" alt="{{meal.mealName}}" title="{{meal.mealName}}">
+               <img class="smallImage" src="{{meal.smallIm.url}}" alt="{{meal.mealName}}" title="{{meal.mealName}}">
+               <h3>{{meal.mealName}}</h3>
+                <section class=card-bottom>
+                    <button class="addButton">ADD TO SCHEDULE</button>
+                    <!-- <button class="delButton" >DELETE</button> -->
+                    <form action="{% url 'deleteMeal' meal.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type='submit'class="delButton">DELETE</button>
+                    </form>  
+                </section>
+            </article>
+            {% endfor %}
+
+
+            <!-- id="imgMealCard1" -->
+            <!-- <article class="mealCard">
+                <a href="#" id="imgMealCard2"></a>
+                <h3>Mashed Apples</h3>
+                <section class=card-bottom>
+                    <button class="addButton">ADD TO SCHEDULE</button>
+                    <button class="delButton">DELETE</button>
+                </section>
+            </article> -->
+
+
+
+        </section>
+        
+
+    </main>
+
+   
+</div>
+ {% endif %}
+</body>
+
+</html>
