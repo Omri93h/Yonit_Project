@@ -66,7 +66,8 @@ def update(request, meal_pk):
 
     if (request.method == 'GET'):
         form = NancyForm(instance=meal)
-        return render(request, 'nancy/create-meal.html', {'meal': meal, 'form': form})
+        act=2
+        return render(request, 'nancy/create-meal.html', {'meal': meal, 'form': form ,'act':act})
     else:
         try:
             form = NancyForm(request.POST, instance=meal)
@@ -92,7 +93,8 @@ def loginuser(request):
   
 def createNewMeal(request):
     if request.method == 'GET':
-        return render(request, 'nancy/create-meal.html', {'form': NancyForm() })
+        act=1
+        return render(request, 'nancy/create-meal.html', {'form': NancyForm(),'act':act})
     else:
         try:
             form = NancyForm(request.POST,request.FILES)
