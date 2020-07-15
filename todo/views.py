@@ -38,8 +38,9 @@ def meals(request):
 def mealData(request, meal_pk):
     meal = get_object_or_404(Nancy, pk=meal_pk)
     form = NancyForm(instance=meal)
+    # creator=get_object_or_404(User,pk=meal.user_id)
     if (request.method == 'GET'):
-        return render(request, 'nancy/meal-data.html', {'meal': meal, 'form': form})
+        return render(request, 'nancy/meal-data.html', {'meal': meal, 'form': form , 'creator':meal.user_id})
     else:
         # meal = get_object_or_404(Nancy, pk=meal_pk) #, user_id=request.user
         try:
@@ -59,6 +60,20 @@ def logoutuser(request):
     if request.method == 'POST':
         logout(request)
     return redirect('homepage') 
+
+def update(request, meal_pk):
+    meal = get_object_or_404(Nancy, pk=meal_pk)
+
+    if (request.method == 'GET'):
+        form = NancyForm(instance=meal)
+        return render(request, 'nancy/create-meal.html', {'meal': meal, 'form': form})
+    else:
+        try:
+            form = NancyForm(request.POST, instance=meal)
+            form.save()
+            return redirect('meals')
+        except ValueError:
+            return render(request, 'nancy/create-meal.html', {'form': form, 'errMsg': "Data mismatch"})
 
 def loginuser(request):
     if (request.method == 'GET'):
@@ -93,10 +108,10 @@ def createNewMeal(request):
 
 @login_required
 def deleteMeal(request, meal_pk):
-    todo = get_object_or_404(Nancy, pk=meal_pk, user_id=request.user)
+    meal = get_object_or_404(Nancy, pk=meal_pk, user_id=request.user)
 
     if (request.method == 'POST'):
-        todo.delete()
+        meal.delete()
         return redirect('meals') 
     
 
