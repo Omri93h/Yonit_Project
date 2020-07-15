@@ -22,6 +22,7 @@
         {% if user.is_authenticated %}     
         <span id="userName">{{user.username}}</span>
         {% endif %}
+        <a href="{% url 'logoutuser' %}">logout</a>
         <a href="#" id="hamburger"></a>
         <a href="#" id=notification></a>
         <a href="#" id=baby-nav></a>
@@ -53,33 +54,39 @@
             <!-- <form action="#" method="POST">
                 {% csrf_token %}    
             <h3>{{errMsg}}</h3> -->
-            <h2>{{form.mealName}}</h2>
-            <p id="meal-description">{{form.description}}  </p>
+            <h2>{{meal.mealName}}</h2>
+            <p id="meal-description">{{meal.description}}  </p>
             <div class="wrapped">
                 <article class="meal-img">
-                    <img src="{% static 'nancy/images/similak-big.jpg' %}" alt="similak-big" title="similak-big">
+                    <!-- <img src="{% static 'nancy/images/similak-big.jpg' %}" alt="similak-big" title="similak-big"> -->
+                    <img class="mediumImg" src="{{meal.bigImage.url}}" alt="{{meal.mealName}}" title="{{meal.mealName}}">
                 </article>
                 <article class="meal-info">
                     <h3>Ingredients:</h3>
-                    <p id="ingredients">{{form.Ingredients}}</p>
+                    <p id="ingredients">{{meal.Ingredients}}</p>
                     <h3>Recipe: </h3>
-                    <p id="recipe">60ml of hot water <br>for each Similak spoon</p><br>
+                    <p id="recipe"> {{meal.Recipe}}</p>
                     <h3>Created by:</h3>
-                    <p id="created-by">Sapir (Mom)</p>
+                    <p id="created-by">{{creator.username}}</p>
                     <h3>Date added:</h3>
-                    <p id="date-added">{{form.dateCreated}}</p>
+                    <p id="date-added">{{meal.dateCreated}}</p>
                     <h3>Feeding amount:</h3>
                     <p id="feeding-amount">27 Times</p>
                 </article>
             </div>
 
-            <form action="{% url 'deleteMeal' meal.id %}" method="POST">
+            <!-- <form action="{% url 'deleteMeal' meal.id %}" method="POST">
                 {% csrf_token %}
                 <button type='submit'>Delete Task</button>
-            </form>  
+            </form>   -->
             <!-- <button type='submit' class="btn-medium" >EDIT</button>
         </form> -->
-            <!-- <button class="btn-medium" onclick="location.href='#';">EDIT</button> -->
+        <form action="{% url 'deleteMeal' meal.id %}" method="POST">
+            {% csrf_token %}
+            <button class="btn-medium" type='submit'>delete</button>
+        </form>  
+            <button class="btn-medium" onclick="myFunc()">EDIT</button>
+            <script> function myFunc(){ window.location.href="{% url 'update' meal.id %}";}  </script>
         </section>
 
 

@@ -22,6 +22,9 @@ class Nancy(models.Model):
     smallIm=ImageSpecField(
         source='imagefile',processors=[SmartResize(40,50)],format='PNG')
    
+    bigImage=ImageSpecField(
+        source='imagefile',processors=[SmartResize(200,300)],format='PNG')
+   
     def __str__(self):
         return self.mealName
 

@@ -14,7 +14,11 @@
 
 <body>
     <header>
-        <a href="nancy" id="logo">N A N C Y</a>
+        <a href="{% url 'nancy' %}" id="logo">N A N C Y</a>
+        {% if user.is_authenticated %}
+        <span id="userName">{{user.username}}</span>
+        {% endif %}
+        <a href="{% url 'logoutuser' %}">logout</a>
         <a href="#" id="hamburger"></a>
         <a href="#" id=notification></a>
         <a href="#" id=baby-nav></a>
@@ -22,11 +26,11 @@
 
     <nav>
         <ul>
-            <li><a href="nancy">Itamar</a></li>
+            <li><a href="{% url 'nancy' %}">Itamar</a></li>
             <li><a href="#">Calendar</a></li>
-            <li class="thisNavSection"><a href="meals"><b>Meals</b></a>
+            <li class="thisNavSection"><a href="{% url 'meals' %}"><b>Meals</b></a>
                 <ul>
-                    <li class="thisNavSection"><a href="meals">All Meals</a></li>
+                    <li class="thisNavSection"><a href="{% url 'meals' %}">All Meals</a></li>
                     <li><a href="#">Upcoming Meals</a></li>
                     <li><a href="#">Meals History</a></li>
                 </ul>
@@ -45,7 +49,12 @@
             <h2>CREATE MEAL</h2>
             <h3>{{errMsg}}</h3>
             <!-- autocomplete="on" -->
+            {% if act == 1  %}
             <form action="#"  method="POST" enctype="multipart/form-data">  
+               {% endif %}
+               {% if act == 2  %}
+               <form action="{% url 'update' meal.id%}"  method="POST" enctype="multipart/form-data">  
+                  {% endif %}
                 <!-- <input type="text" name="meal-name" placeholder="*Meal Name" id="meal-name"><br>
                 <label>Description</label><br>
                 <textarea id="description" rows="4" cols="40"></textarea><br>

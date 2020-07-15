@@ -27,6 +27,7 @@ urlpatterns = [
     path('logout', views.logoutuser, name='logoutuser'),
     path('login', views.loginuser, name='loginuser'),
     path('createNewMeal/', views.createNewMeal, name='createNewMeal'),
+    path('update/<int:meal_pk>', views.update, name='update'),
     path('nancy' ,views.nancy, name='nancy'),
     path('mealData/<int:meal_pk>', views.mealData, name='mealData'),
     path('mealData/<int:meal_pk>/deleteMeal', views.deleteMeal, name='deleteMeal'),
