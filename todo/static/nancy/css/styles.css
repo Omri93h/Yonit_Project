@@ -2,6 +2,7 @@
 *{
     margin: 0;
     padding: 0;
+    overflow: visible;
 }
 
 html,nav, header, footer, main, aside, section, div{
@@ -23,6 +24,11 @@ h5{
     opacity: 0.8;
 }
 
+a{
+    text-decoration: none;
+    color: #222;
+}
+
 
 body{
     display: flex;
@@ -30,29 +36,35 @@ body{
     font-family: 'Ubuntu', sans-serif;
     font-style: normal;
     background-color: #f0f0f0;
+    height: 100vh;
 }
 
 .wrapper{
+    display: block;
     width: 100%;
     margin: 0 auto;
 }
 
 header{
     position: sticky;
-    z-index: 1;
-    position: -webkit-sticky;
+    z-index: 99;
     top: 0;
+    width: 100%;
+}
+
+.header-selections{
+    display: block;
     width: 100%;
     height: 65px;
     line-height: 65px;
     background-color: white;
     box-shadow: 0px 0px 4px #222222;
     font-size: 20px;
-    font-family: 'Noto Sans', sans-serif;
+    /* font-family: 'Noto Sans', sans-serif; */
 }
 
 nav{
-    position: static;
+    /* position: static; */
     left:0;
     height: 97vh;
     width: 13vw;
@@ -134,8 +146,8 @@ li:hover{
 main{
     position: absolute;
     display: inline-flex;
-    width: 85vw;
-    height: 93vh;
+    width: 100%;
+    height: 100%;
     /* border: 3px solid green; */
     padding-bottom: 3vh ;
     /* padding-top: 3vh; */
@@ -530,9 +542,23 @@ label{
     border: none;
     border-radius: 8px;
     color: white;
+    font-size: large;
     padding: 10px 20px;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .btn-large{
+    display: block;
+    margin: 0 auto;
+    background-color: #222222;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
   }
 
 
@@ -579,7 +605,41 @@ label{
 
 }
 
+/* ________________________Login_________________________ */
 
+
+#login-section{
+    padding:0 25px 5px;
+    height: 380px;
+    width: 350px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+#user-and-password{
+    margin-top: 50px;
+
+}
+
+#no-account-yet{
+    position: absolute;
+    height: 50px;
+    bottom: 0;
+    text-align: center;
+    left:50%;
+    transform: translateX(-50%); 
+    -webkit-transform: translateX(-50%);
+    margin-bottom: 10px;
+
+}
+
+/* ________________________end of Login_________________________ */
+
+
+/* ________________________MOBILE_________________________ */
 
 @media screen and (max-width: 500px) {
 

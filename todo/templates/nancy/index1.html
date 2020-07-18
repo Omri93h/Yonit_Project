@@ -17,6 +17,7 @@
 <body>
     <div class="wrapper">
         <header>
+            <div class="header-selections">
             <a href="#" id="logo">N A N C Y</a>
             {% if user.is_authenticated %}
             <span id="userName">{{user.username}}</span>
@@ -25,6 +26,7 @@
             <a href="{% url 'meals' %}" id="hamburger"></a>
             <a href="#" id=notification></a>
             <a href="#" id=baby-nav></a>
+        </div>
         </header>
 
         <nav>

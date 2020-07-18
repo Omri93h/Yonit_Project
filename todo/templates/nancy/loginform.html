@@ -1,19 +1,79 @@
+{% load static  %}
 <!DOCTYPE html>
 <html lang="en">
- 	<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login form</title>
- 	</head>
- 	<body>
-        <h1>Login</h1>
-        <h3>{{errMsg}}</h3>
 
-        <form action="#" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button type='submit'>Login</button>
-            <a href="home">Back</a>
-        </form>
- 	</body>
+<head>
+       <meta charset="UTF-8">
+
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap"
+              rel="stylesheet">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script src="{% static 'nancy/js/scripts.js' %}"></script>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+       <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+       <link rel="stylesheet" href="static/nancy/css/styles.css?{% now 'U' %}">
+       <title>N A N C Y</title>
+</head>
+
+<body>
+       <div class="wrapper">
+              <header>
+                     <div class="header-selections">
+                            <a href="{% url 'nancy' %}" id="logo">N A N C Y</a>
+                            <a href="#" id="hamburger"></a>
+                     </div>
+              </header>
+              <main>
+
+                     <section id="login-section">
+                            <h1>Welcome To NANCY</h1><br>
+
+                            <form method="POST">
+                                   <!-- <div id="user-and-password"> -->
+                                   {% csrf_token %}
+                                   <div class="row">
+                                          <div class="input-group">
+                                                 <span class="input-group-addon" id="basic-addon1"><i
+                                                               class="lni lni-user"></i></span>
+                                                 <input type="input" class="form-control" placeholder="Username"
+                                                        name="username" aria-label="Username"
+                                                        aria-describedby="basic-addon1" required>
+                                          </div>
+
+                                   </div>
+                                   <br>
+                                   <div class="row">
+                                          <div class="input-group">
+                                                 <span class="input-group-addon" id="basic-addon1"><i
+                                                               class="lni lni-key"></i></span>
+                                                 <input type="password" class="form-control" placeholder="Password"
+                                                        name="password" aria-label="Username"
+                                                        aria-describedby="basic-addon1" required>
+                                          </div>
+
+                                   </div>
+                                   <br>
+                                   <button class="btn-medium" type="submit"
+                                          style="opacity: 1 !important;">Login</button>
+                            </form>
+                            <br>
+                            {% if errMsg %}
+                            <div class="alert alert-danger" role="alert">{{errMsg}}</div>
+                            {%endif%}
+                            <div id="no-account-yet">
+                                   <h6>Don't have an account?</h6>
+                                   <h5><a href="/register">Register Here!</a></h5>
+                            </div>
+
+
+                     </section>
+
+              </main>
+
+       </div>
+</body>
+
 </html>
