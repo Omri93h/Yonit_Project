@@ -22,7 +22,7 @@
             {% if user.is_authenticated %}
             <span id="userName">{{user.username}}</span>
             {% endif %}
-            <a href="{% url 'logoutuser' %}">logout</a>
+            <a id="logout" href="{% url 'logoutuser' %}">logout</a>
             <a href="{% url 'meals' %}" id="hamburger"></a>
             <a href="#" id=notification></a>
             <a href="#" id=baby-nav></a>
