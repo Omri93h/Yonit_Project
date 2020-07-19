@@ -18,15 +18,14 @@
     <div class="wrapper">
         <header>
             <div class="header-selections">
-            <a href="#" id="logo">N A N C Y</a>
-            {% if user.is_authenticated %}
-            <span id="userName">{{user.username}}</span>
-            {% endif %}
-            <a id="logout" href="{% url 'logoutuser' %}">logout</a>
-            <a href="{% url 'meals' %}" id="hamburger"></a>
-            <a href="#" id=notification></a>
-            <a href="#" id=baby-nav></a>
-        </div>
+                <a href="#" id="logo">N A N C Y</a>
+                {% if user.is_authenticated %}
+                <span id="userName">{{user.username}}</span>
+                {% endif %}
+                <a href="{% url 'meals' %}" id="hamburger"></a>
+                <a href="#" id=notification></a>
+                <a href="#" id=baby-nav></a>
+            </div>
         </header>
 
         <nav>
@@ -41,9 +40,12 @@
                 </ul>
                 <li><a href="#">Allergies</a></li>
                 <li><a href="#">Permissions</a></li>
-                <li><a href="#">Settings</a></li>
                 <li><a href="#">Grocery List</a></li>
                 <li><a href="#">Reminders</a></li>
+                <li><a href="#">Settings</a></li>
+                {% if user.is_authenticated %}
+                <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
+                {% endif %}
             </ul>
         </nav>
 
@@ -64,31 +66,40 @@
                         <p id="timer"></p>
                     </div>
                     <div class="upcoming-meal">
-                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} " alt="clock_icon">
+                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} "
+                                alt="clock_icon">
                             <h4>11:30</h4>
                         </div>
-                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} " alt="bowl_icon">
+                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} "
+                                alt="bowl_icon">
                             <h4>Mashed Apples</h4>
                         </div>
-                        <img src="{% static 'nancy/images/mashed_apple_small.png' %} " class="align-self" alt="mashed_apple_small">
+                        <img src="{% static 'nancy/images/mashed_apple_small.png' %} " class="align-self"
+                            alt="mashed_apple_small">
                     </div>
                     <div class="upcoming-meal">
-                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %}" alt="clock_icon">
+                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %}"
+                                alt="clock_icon">
                             <h4>13:30</h4>
                         </div>
-                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} " alt="bowl_icon">
+                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} "
+                                alt="bowl_icon">
                             <h4>Mashed Potato</h4>
                         </div>
-                        <img src="{% static 'nancy/images/mashed_potato_small.png' %} " class="align-self" alt="mashed_potato_small">
+                        <img src="{% static 'nancy/images/mashed_potato_small.png' %} " class="align-self"
+                            alt="mashed_potato_small">
                     </div>
                     <div class="upcoming-meal">
-                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} " alt="clock_icon">
+                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} "
+                                alt="clock_icon">
                             <h4>16:00</h4>
                         </div>
-                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bottle_icon2.png' %} " alt="bowl_icon">
+                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bottle_icon2.png' %} "
+                                alt="bowl_icon">
                             <h4>Similak</h4>
                         </div>
-                        <img src="{% static 'nancy/images/similak_small.png' %} " class="align-self" alt="mashed_apple_small">
+                        <img src="{% static 'nancy/images/similak_small.png' %} " class="align-self"
+                            alt="mashed_apple_small">
                     </div>
                     <button class="btn-medium" id="see-all"> <b>See All</b></button>
                 </section>

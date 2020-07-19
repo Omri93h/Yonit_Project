@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Nancy
 from django.utils import timezone
 
-
+################################## LOGIN & REGISTER #################################
 def registerForm(request):
     if (request.method == 'GET'):
         return render(request, 'nancy/registerForm.html', {'form': UserCreationForm() })
@@ -25,10 +25,38 @@ def registerForm(request):
         else:
             return render(request, 'nancy/registerForm.html', {'form': UserCreationForm(), "errMsg": "Password didn't match" })
 
+def logoutuser(request):
+    logout(request)
+    return redirect('login') 
+
+def loginuser(request):
+    if (request.method == 'GET'):
+        return render(request, 'nancy/loginform.html', {'form': AuthenticationForm() })
+    else:
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+
+        if user is None:
+            return render(request, 'nancy/loginform.html', {'form': AuthenticationForm(), "errMsg": "User doesn't exist" })
+        else:
+            login(request, user)
+            return redirect('nancy')
+
+################################## end of LOGIN & REGISTER #################################
+
+################################## HOMEPAGE #################################
 
 def nancy(request):
-    return render(request, 'nancy/index1.html')
+    if request.user.is_authenticated:
+        return render(request, 'nancy/index1.html')
+    else:
+       return redirect('login')
+        
+def homepage(request):
+    return render(request, 'nancy/index.html')
 
+################################## end of HOMEPAGE #################################
+
+################################## MEALS #################################
 @login_required
 def meals(request):
     meal = Nancy.objects.filter(user_id = request.user).order_by('-dateCreated')
@@ -52,16 +80,7 @@ def mealData(request, meal_pk):
 
 
 
-
-def homepage(request):
-    return render(request, 'nancy/index.html')
-
-def logoutuser(request):
-    if request.method == 'POST':
-        logout(request)
-    return redirect('homepage') 
-
-def update(request, meal_pk):
+def updateMeal(request, meal_pk):
     meal = get_object_or_404(Nancy, pk=meal_pk)
 
     if (request.method == 'GET'):
@@ -76,21 +95,8 @@ def update(request, meal_pk):
         except ValueError:
             return render(request, 'nancy/create-meal.html', {'form': form, 'errMsg': "Data mismatch"})
 
-def loginuser(request):
-    if (request.method == 'GET'):
-        return render(request, 'nancy/loginform.html', {'form': AuthenticationForm() })
-    else:
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-
-        if user is None:
-            return render(request, 'nancy/loginform.html', {'form': AuthenticationForm(), "errMsg": "User doesn't exist" })
-        else:
-            login(request, user)
-            return redirect('nancy')
 
 
-
-  
 def createNewMeal(request):
     if request.method == 'GET':
         act=1
@@ -105,9 +111,6 @@ def createNewMeal(request):
         except ValueError:
             return render(request, 'nancy/create-meal.html', {'form': NancyForm(), 'errMsg': 'Data mismatch'})
 
-
-
-
 @login_required
 def deleteMeal(request, meal_pk):
     meal = get_object_or_404(Nancy, pk=meal_pk, user_id=request.user)
@@ -116,5 +119,4 @@ def deleteMeal(request, meal_pk):
         meal.delete()
         return redirect('meals') 
     
-
-           
+################################## end of MEALS #################################

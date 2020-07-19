@@ -6,6 +6,9 @@
     <title>N A N C Y</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'nancy/css/styles.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'nancy/js/scripts.js' %}"></script>
@@ -22,7 +25,7 @@
                 {% if user.is_authenticated %}
                 <span id="userName">{{user.username}}</span>
                 {% endif %}
-                <a href="{% url 'logoutuser' %}">logout</a>
+                
                 <a href="#" id="hamburger"></a>
                 <a href="#" id=notification></a>
                 <a href="#" id=baby-nav></a>
@@ -43,9 +46,13 @@
                 </li>
                 <li><a href="#">Allergies</a></li>
                 <li><a href="#">Permissions</a></li>
-                <li><a href="#">Settings</a></li>
+                
                 <li><a href="#">Grocery List</a></li>
                 <li><a href="#">Reminders</a></li>
+                <li><a href="#">Settings</a></li>
+                {% if user.is_authenticated %}
+                <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
+                {% endif %}
             </ul>
         </nav>
 
@@ -58,7 +65,7 @@
                 <form action="#" method="POST" enctype="multipart/form-data">
                     {% endif %}
                     {% if act == 2  %}
-                    <form action="{% url 'update' meal.id%}" method="POST" enctype="multipart/form-data">
+                    <form action="{% url 'updateMeal' meal.id%}" method="POST" enctype="multipart/form-data">
                         {% endif %}
                         <!-- <input type="text" name="meal-name" placeholder="*Meal Name" id="meal-name"><br>
                 <label>Description</label><br>
