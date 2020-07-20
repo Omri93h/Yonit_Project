@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>N A N C Y</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'nancy/css/styles.css' %}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="{% static 'nancy/js/scripts.js' %}"></script>
-    
-    </head>
+<head>
+    <title>N A N C Y</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Ubuntu:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'nancy/css/styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'nancy/js/scripts.js' %}"></script>
+
+</head>
 
 <body>
     {% if user.is_authenticated %}
@@ -56,55 +56,69 @@
 
                 <section id="mealCards">
                     <h2>ALL MEALS</h2>
+
+                    <div id="meals-selections">
+
+                        <form action="#" method="GET" id="sort_form">
+                            <div id="meals-sort">
+                                <h6>Creation Date</h6>
+                                <input type="radio" id="sort_up" name="sort" value="UP" {{checked.UP}}>
+                                <label for="sort_up">UP</label>
+                                <input type="radio" id="sort_down" name="sort" value="DOWN" {{checked.DOWN}}>
+                                <label for="sort_down">DOWN</label>
+                            </div>
+
+                            <div id="meals-filter">
+                                <h6> Filter Meals </h6>
+                                <input type="radio" id="f_all" name="filter" value="ALL" {{checked.ALL}} selected>
+                                <label for="f_all">ALL</label>
+                                <input type="radio" id="f_tested" name="filter" value="YES" {{checked.YES}}>
+                                <label for="f_tested">Tasted</label>
+                                <input type="radio" id="f_notested" name="filter" value="NO" {{checked.NO}}>
+                                <label for="f_notested">Not Tasted</label>
+
+
+                            </div>
+                            <div id="which-meals">
+                                <h6>Meal Creator</h6>
+                                <label for="select-userMeals"></label>
+                                <select name="userMeals" id="select-userMeals">
+                                    <option value="myMeals" {{select.MYmeals}}>My Meals</option>
+                                    <option value="allMeals" {{select.ALLusersMeals}}>All Users Meals</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-small" id="apply">APPLY </button>
+                        </form>
+                    </div>
+
+
+                    <div id="meals-card-container">
+                        {% for meal in allmeals %}
+                        <article class="mealCard">
+                            <a href="/mealData/{{meal.id}}"></a>
+                            <img class="mediumImg" src="{{meal.mediumIm.url}}" alt="{{meal.mealName}}"
+                                title="{{meal.mealName}}">
+                            <img class="smallImage" src="{{meal.smallIm.url}}" alt="{{meal.mealName}}"
+                                title="{{meal.mealName}}">
+                            <h3>{{meal.mealName}}</h3>
+                            <section class=card-bottom>
+                                <button class="addButton">ADD TO SCHEDULE</button>
+                                <form action="{% url 'deleteMeal' meal.id %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if user == meal.user_id %}
+                                    <button type='submit' class="delButton">DELETE</button>
+                                    {% else %}
+                                    <button type='submit' class="delButton" disabled style="opacity: 40%;">DELETE
+                                    </button>
+                                    {% endif %}
+                                </form>
+                            </section>
+                        </article>
+                        {% endfor %}
+                    </div>
                     <a href="createNewMeal">
                         <button class="btn-medium"><span>+ </span> CREATE MEAL</button>
                     </a>
-                    <form action="#" method="GET" id="sort_form">
-                        <h5>Sort By Creation Date</h5>
-                        <input type="radio" id="sort_up" name="sort" value="UP" {{checked.UP}}>
-                        <label for="sort_up">UP</label>
-                        <input type="radio" id="sort_down" name="sort" value="DOWN" {{checked.DOWN}}>
-                        <label for="sort_down">DOWN</label>
-
-
-                        <h5> Filter Meals </h5>
-                        <input type="radio" id="f_tested" name="filter" value="YES" {{checked.YES}}>
-                        <label for="f_tested">Tested Meals</label>
-                        <input type="radio" id="f_notested" name="filter" value="NO" {{checked.NO}}>
-                        <label for="f_notested">Not Tested Meals</label>
-                        <input type="radio" id="f_all" name="filter" value="ALL" {{checked.ALL}}>
-                        <label for="f_all">ALL Meals</label>
-                        <label for="select-userMeals">Choose Meal Creator</label>
-                        <select name="userMeals" id="select-userMeals">
-                            <option value="myMeals" {{select.MYmeals}}>My Meals</option>
-                            <option value="allMeals" {{select.ALLusersMeals}}>All Users Meals</option>
-                        </select>
-                        <button type="submit" class="btn-small">APPLY </button>
-                    </form>
-
-
-                    {% for meal in allmeals %}
-                    <article class="mealCard">
-                        <a href="/mealData/{{meal.id}}"></a>
-                        <img class="mediumImg" src="{{meal.mediumIm.url}}" alt="{{meal.mealName}}"
-                            title="{{meal.mealName}}">
-                        <img class="smallImage" src="{{meal.smallIm.url}}" alt="{{meal.mealName}}"
-                            title="{{meal.mealName}}">
-                        <h3>{{meal.mealName}}</h3>
-                        <section class=card-bottom>
-                            <button class="addButton">ADD TO SCHEDULE</button>
-                            <form action="{% url 'deleteMeal' meal.id %}" method="POST">
-                                {% csrf_token %}
-                                {% if user == meal.user_id %}
-                                <button type='submit' class="delButton">DELETE</button>
-                                {% else %}
-                                <button type='submit' class="delButton" disabled style="opacity: 40%;">DELETE </button>
-                                {% endif %}
-                            </form>
-                        </section>
-                    </article>
-                    {% endfor %}
-
 
                 </section>
 

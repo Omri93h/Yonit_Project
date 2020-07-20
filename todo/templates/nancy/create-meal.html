@@ -32,69 +32,56 @@
                 <a href="#" id=baby-nav></a>
             </div>
         </header>
+        <div class="table">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'nancy' %}">Itamar</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li class="thisNavSection"><a href="{% url 'meals' %}"><b>Meals</b></a>
+                        <ul>
+                            <li class="thisNavSection"><a href="{% url 'meals' %}">All Meals</a></li>
+                            <li><a href="#">Upcoming Meals</a></li>
+                            <li><a href="#">Meals History</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Allergies</a></li>
+                    <li><a href="#">Permissions</a></li>
+                    <li><a href="#">Grocery List</a></li>
+                    <li><a href="#">Reminders</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
+                </ul>
+            </nav>
 
-        <nav>
-            <ul>
-                <li><a href="{% url 'nancy' %}">Itamar</a></li>
-                <li><a href="#">Calendar</a></li>
-                <li class="thisNavSection"><a href="{% url 'meals' %}"><b>Meals</b></a>
-                    <ul>
-                        <li class="thisNavSection"><a href="{% url 'meals' %}">All Meals</a></li>
-                        <li><a href="#">Upcoming Meals</a></li>
-                        <li><a href="#">Meals History</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Allergies</a></li>
-                <li><a href="#">Permissions</a></li>
-                <li><a href="#">Grocery List</a></li>
-                <li><a href="#">Reminders</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
-            </ul>
-        </nav>
-
-        <main>
-            <section class="create-meal">
-                <h2>CREATE MEAL</h2>
-                <h3>{{errMsg}}</h3>
-                <!-- autocomplete="on" -->
-                {% if act == 1  %}
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    {% endif %}
-                    {% if act == 2  %}
-                    <form action="{% url 'updateMeal' meal.id%}" method="POST" enctype="multipart/form-data">
+            <main>
+                <section class="create-meal">
+                    <h2>CREATE MEAL</h2>
+                    <h3>{{errMsg}}</h3>
+                    <!-- autocomplete="on" -->
+                    {% if act == 1  %}
+                    <form action="#" method="POST" enctype="multipart/form-data">
                         {% endif %}
-                        <!-- <input type="text" name="meal-name" placeholder="*Meal Name" id="meal-name"><br>
-                <label>Description</label><br>
-                <textarea id="description" rows="4" cols="40"></textarea><br>
-                <label>*Ingredients</label><br>
-                <textarea id="ingredients" rows="2" cols="40"></textarea><br>
-                <label>Has <i>Itamar </i> tasted all of these ingredients?</label><br>
-                <input type="radio" value="Yes" name="tasted" checked><label><b>Yes</b></label> &nbsp;
-                <input type="radio" value="No" name="tasted"><label><b> No</b></label><br>
-                <label>Recipe</label><br>
-                <textarea id="recipe" rows="3" cols="40"></textarea><br>
-                <label>Upload Image </label>&nbsp;
-                <input type="file" id="myFile" name="filename"> -->
-                        {% csrf_token %}
-                        {{form.as_p}}
-                        <button type='submit' class="btn-medium">Save </button>
-                        <!-- <input type="submit" class="btn-medium" value="ADD MEAL"> -->
-                        <!-- value="ADD MEAL" -->
-                    </form>
-            </section>
-        </main>
+                        {% if act == 2  %}
+                        <form action="{% url 'updateMeal' meal.id%}" method="POST" enctype="multipart/form-data">
+                            {% endif %}
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button type='submit' class="btn-medium">Save </button>
 
-    </div>
+                        </form>
+                </section>
+            </main>
 
-    <script>
-        $.getJSON("{% static 'nancy\js\main_ingredients.json' %}", function (data) {
-            $.each(data.mainingrieadient, function () {
-                $("#selectIngredients").append('<option value="' + this.name + '" >' + this.name + '</option>')
-            })
-        });
+        </div>
 
-    </script>
+        <script>
+            $.getJSON("{% static 'nancy\js\main_ingredients.json' %}", function (data) {
+                $.each(data.mainingrieadient, function () {
+                    $("#selectIngredients").append('<option value="' + this.name + '" >' + this.name + '</option>')
+                })
+            });
+
+        </script>
 </body>
 
 </html>

@@ -19,13 +19,13 @@
         <header>
             <div class="header-selections">
                 <a href="#" id="logo">N A N C Y</a>
-                {% if user.is_authenticated %}
-                <span id="userName">{{user.username}}</span>
-                {% endif %}
                 <button id="hamburger"></button>
                 <div class="hamburger-open"></div>
                 <a href="#" id=notification></a>
                 <a href="#" id=baby-nav></a>
+                {% if user.is_authenticated %}
+                <span id="userName">logged in as <b>{{user.username}} <b> &nbsp;</span>
+                {% endif %}
             </div>
         </header>
         <div class="table">
