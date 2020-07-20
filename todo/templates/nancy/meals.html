@@ -22,13 +22,14 @@
     <div class="wrapper">
         <header>
             <div class="header-selections">
-                <a href="nancy" id="logo">N A N C Y</a>
-
-                <span id="userName">{{user.username}}</span>
-
-                <a href="#" id="hamburger"></a>
+                <a href="#" id="logo">N A N C Y</a>
+                <button id="hamburger"></button>
+                <div class="hamburger-open"></div>
                 <a href="#" id=notification></a>
                 <a href="#" id=baby-nav></a>
+                {% if user.is_authenticated %}
+                <span id="userName">logged in as <b>{{user.username}} <b> &nbsp;</span>
+                {% endif %}
             </div>
         </header>
         <div class="table">
@@ -91,16 +92,16 @@
                         </form>
                     </div>
 
-
                     <div id="meals-card-container">
                         {% for meal in allmeals %}
                         <article class="mealCard">
-                            <a href="/mealData/{{meal.id}}"></a>
-                            <img class="mediumImg" src="{{meal.mediumIm.url}}" alt="{{meal.mealName}}"
-                                title="{{meal.mealName}}">
-                            <img class="smallImage" src="{{meal.smallIm.url}}" alt="{{meal.mealName}}"
-                                title="{{meal.mealName}}">
-                            <h3>{{meal.mealName}}</h3>
+                            <a href="/mealData/{{meal.id}}">
+                                <img class="mediumImg" src="{{meal.mediumIm.url}}" alt="{{meal.mealName}}"
+                                    title="{{meal.mealName}}">
+                                <img class="smallImage" src="{{meal.smallIm.url}}" alt="{{meal.mealName}}"
+                                    title="{{meal.mealName}}">
+                                <h4>{{meal.mealName}}</h4>
+                            </a>
                             <section class=card-bottom>
                                 <button class="addButton">ADD TO SCHEDULE</button>
                                 <form action="{% url 'deleteMeal' meal.id %}" method="POST">
@@ -116,15 +117,13 @@
                         </article>
                         {% endfor %}
                     </div>
+
                     <a href="createNewMeal">
                         <button class="btn-medium"><span>+ </span> CREATE MEAL</button>
                     </a>
 
                 </section>
-
-
             </main>
-
         </div>
     </div>
     {% endif %}

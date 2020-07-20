@@ -11,7 +11,7 @@ class Nancy(models.Model):
     mealName = models.CharField(max_length=30)
     scheduled = models.BooleanField(default=False)
     description = models.TextField(blank=True)
-    Ingredients = models.CharField(max_length=70)
+    mainIngredient = models.CharField(max_length=70)
     HasItamarTasted = models.BooleanField(default=False)
     Recipe = models.CharField(max_length=70)
     imagefile = models.ImageField(default='todo\static\nancy\images\Mashed_apple.png',upload_to='nancy/images')

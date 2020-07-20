@@ -489,7 +489,7 @@ main section{
 .mealCard a{ 
     display: block;  
     width: 150px;
-    margin: 0px auto;
+    margin: 0 auto;
     background-repeat: no-repeat;
 }
 
@@ -547,7 +547,7 @@ main section{
 .card-bottom{
     width: 100%;
     position: relative;
-    margin-top: 10px;
+    margin-top: 25px;
     box-shadow: none;
     background-color: transparent;
 }
@@ -636,7 +636,7 @@ label{
 #userName{
     font-size: smaller;
     min-width: 100px;
-    margin: 0 0 5px;
+
     color: rgba(21, 12, 63, 0.459);
     float: right;
 }
