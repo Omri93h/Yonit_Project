@@ -25,7 +25,7 @@ SECRET_KEY = '+we-63_i+o@dx&)dpwjfk!x83hd2bl)b3p&w%-ci*9iz02o*@f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["omri93h.pythonanywhere.com"]
 
 
 # Application definition
