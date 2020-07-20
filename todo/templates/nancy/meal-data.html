@@ -29,90 +29,82 @@
                 <a href="#" id=baby-nav></a>
             </div>
         </header>
+        <div class="table">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'nancy' %}">Itamar</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li class="thisNavSection"><a href="{% url 'meals' %}"><b>Meals</b></a>
+                        <ul>
+                            <li class="thisNavSection"><a href="{% url 'meals' %}">All Meals</a></li>
+                            <li><a href="#">Upcoming Meals</a></li>
+                            <li><a href="#">Meals History</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Allergies</a></li>
+                    <li><a href="#">Permissions</a></li>
+                    <li><a href="#">Grocery List</a></li>
+                    <li><a href="#">Reminders</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
+                </ul>
+            </nav>
 
-        <nav>
-            <ul>
-                <li><a href="{% url 'nancy' %}">Itamar</a></li>
-                <li><a href="#">Calendar</a></li>
-                <li class="thisNavSection"><a href="{% url 'meals' %}"><b>Meals</b></a>
-                    <ul>
-                        <li class="thisNavSection"><a href="{% url 'meals' %}">All Meals</a></li>
-                        <li><a href="#">Upcoming Meals</a></li>
-                        <li><a href="#">Meals History</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Allergies</a></li>
-                <li><a href="#">Permissions</a></li>
-                <li><a href="#">Grocery List</a></li>
-                <li><a href="#">Reminders</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
-            </ul>
-        </nav>
+            <main>
 
-        <main>
-
-            <section id="meal-data">
-                <!-- <form action="#" method="POST">
-                {% csrf_token %}    
-            <h3>{{errMsg}}</h3> -->
-                <h2>{{meal.mealName}}</h2>
-                <p id="meal-description">{{meal.description}} </p>
-                <div class="wrapped">
-                    <article class="meal-img">
-                        <!-- <img src="{% static 'nancy/images/similak-big.jpg' %}" alt="similak-big" title="similak-big"> -->
-                        <img class="mediumImg" src="{{meal.bigImage.url}}" alt="{{meal.mealName}}"
-                            title="{{meal.mealName}}">
-                    </article>
-                    <article class="meal-info">
-                        <h3>Ingredients:</h3>
-                        <p id="ingredients">{{meal.mainIngredient}}</p>
-                        <h3>Vitamins</h3>
-                        <p id="vitamins"></p>
-                        <h3>Minerals</h3>
-                        <p id="minerals"></p>
-                        <h3>Recipe: </h3>
-                        <p id="recipe"> {{meal.Recipe}}</p>
-                        <h3>Created By:</h3>
-                        <p id="created-by">{{creator.username}}</p>
-                        <h3>Date Added:</h3>
-                        <p id="date-added">{{meal.dateCreated}}</p>
-                        <h3>Times Feeded</h3>
-                        <p id="feeding-amount">27 Times</p>
-                    </article>
-                </div>
-
-                <!-- <form action="{% url 'deleteMeal' meal.id %}" method="POST">
-                {% csrf_token %}
-                <button type='submit'>Delete Task</button>
-            </form>   -->
-                <!-- <button type='submit' class="btn-medium" >EDIT</button>
-        </form> -->
-                <form action="{% url 'deleteMeal' meal.id %}" method="POST">
-                    {% csrf_token %}
-                    <button class="btn-medium" type='submit'>delete</button>
-                </form>
-                <button class="btn-medium" onclick="myFunc()">EDIT</button>
-                <script> function myFunc() { window.location.href = "{% url 'updateMeal' meal.id %}"; }  </script>
-            </section>
+                <section id="meal-data">
+                    <h2>{{meal.mealName}}</h2>
+                    <p id="meal-description">{{meal.description}} </p>
+                    <div class="wrapped">
+                        <article class="meal-img">
+                            <img class="mediumImg" src="{{meal.bigImage.url}}" alt="{{meal.mealName}}"
+                                title="{{meal.mealName}}">
+                        </article>
+                        <article class="meal-info">
+                            <h3>Ingredients:</h3>
+                            <p id="ingredients">{{meal.mainIngredient}}</p>
+                            <h3>Vitamins</h3>
+                            <p id="vitamins"></p>
+                            <h3>Minerals</h3>
+                            <p id="minerals"></p>
+                            <h3>Recipe: </h3>
+                            <p id="recipe"> {{meal.Recipe}}</p>
+                            <h3>Created By:</h3>
+                            <p id="created-by">{{creator.username}}</p>
+                            <h3>Date Added:</h3>
+                            <p id="date-added">{{meal.dateCreated}}</p>
+                            <h3>Times Feeded</h3>
+                            <p id="feeding-amount">27 Times</p>
+                        </article>
+                    </div>
+                    <div id="mealdata-buttons">
+                        <form action="{% url 'deleteMeal' meal.id %}" method="POST">
+                            {% csrf_token %}
+                            <button class="delButton" type='submit'>DELETE</button>
+                        </form>
+                        <button class="addButton" onclick="myFunc()">EDIT</button>
+                        <script> function myFunc() { window.location.href = "{% url 'updateMeal' meal.id %}"; }  </script>
+                    </div>
+                </section>
 
 
 
-        </main>
-    </div>
+            </main>
+            </table>
+        </div>
 
-    <script>
-        let obj = document.getElementById("ingredients").innerHTML;
-        $.getJSON("{% static 'nancy\js\main_ingredients.json' %}", function (data) {
-            $.each(data.mainingrieadient, function () {
-                if (this.name == obj) {
-                    console.log(this.vitamins)
-                    $("#vitamins").html(this.vitamins);
-                    $("#minerals").html(this.minerals);
-                }
-            })
-        });            
-    </script>
+        <script>
+            let obj = document.getElementById("ingredients").innerHTML;
+            $.getJSON("{% static 'nancy\js\main_ingredients.json' %}", function (data) {
+                $.each(data.mainingrieadient, function () {
+                    if (this.name == obj) {
+                        console.log(this.vitamins)
+                        $("#vitamins").html(this.vitamins);
+                        $("#minerals").html(this.minerals);
+                    }
+                })
+            });            
+        </script>
 </body>
 
 </html>

@@ -13,6 +13,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{% static 'nancy/css/styles.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
     <script src="{% static 'nancy/js/scripts.js' %}"></script>
 
 </head>
@@ -22,7 +23,7 @@
     <div class="wrapper">
         <header>
             <div class="header-selections">
-                <a href="#" id="logo">N A N C Y</a>
+                <a href="/nancy" id="logo">N A N C Y</a>
                 <button id="hamburger"></button>
                 <div class="hamburger-open"></div>
                 <a href="#" id=notification></a>
@@ -63,20 +64,28 @@
                         <form action="#" method="GET" id="sort_form">
                             <div id="meals-sort">
                                 <h6>Creation Date</h6>
-                                <input type="radio" id="sort_up" name="sort" value="UP" {{checked.UP}}>
-                                <label for="sort_up">UP</label>
-                                <input type="radio" id="sort_down" name="sort" value="DOWN" {{checked.DOWN}}>
-                                <label for="sort_down">DOWN</label>
+                                <label for="sort_up">
+                                    <input type="radio" id="sort_up" name="sort" value="UP" {{checked.UP}}>
+                                    <i class="lni lni-arrow-up"></i>
+                                </label>
+                                &nbsp;&nbsp;
+                                <label for="sort_down">
+                                    <input type="radio" id="sort_down" name="sort" value="DOWN" {{checked.DOWN}}>
+                                    <i class="lni lni-arrow-down"></i>
+                                </label>
                             </div>
 
                             <div id="meals-filter">
                                 <h6> Filter Meals </h6>
-                                <input type="radio" id="f_all" name="filter" value="ALL" {{checked.ALL}} selected>
-                                <label for="f_all">ALL</label>
-                                <input type="radio" id="f_tested" name="filter" value="YES" {{checked.YES}}>
-                                <label for="f_tested">Tasted</label>
-                                <input type="radio" id="f_notested" name="filter" value="NO" {{checked.NO}}>
-                                <label for="f_notested">Not Tasted</label>
+                                <label for="f_all">
+                                    <input type="radio" id="f_all" name="filter" value="ALL" {{checked.ALL}} selected>
+                                    ALL</label> &nbsp;&nbsp;
+                                <label for="f_tested">
+                                    <input type="radio" id="f_tested" name="filter" value="YES" {{checked.YES}}>
+                                    Already Tasted </label>&nbsp;&nbsp;
+                                <label for="f_notested">
+                                    <input type="radio" id="f_notested" name="filter" value="NO" {{checked.NO}}>
+                                    Never Tasted</label>
 
 
                             </div>

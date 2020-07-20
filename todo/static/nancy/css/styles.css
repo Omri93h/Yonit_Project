@@ -436,7 +436,9 @@ main section{
 /*___________ ------------------- PAGE2---------------------____________ */
 
 
-
+.smallImage{
+    display:none;
+}
 
 
 #button-createMeal{
@@ -506,12 +508,12 @@ main section{
     opacity: 50%;
 }
 
-.mealCard .addButton{
+.addButton{
     font-size: 14px;
     display: block;
     width:180px ;
     height: 35px ;
-    margin: 10px auto 5px;
+    margin: 5px auto;
     border-radius: 10px;
     background-color:#222222 ;
     color: white;
@@ -520,7 +522,7 @@ main section{
     transition: 0.2s all;
 }
 
-.mealCard .delButton{
+.delButton{
     font-size: 14px;
     display: block;
     width:140px ;
@@ -537,6 +539,11 @@ main section{
 .delButton:hover, .addButton:hover{
     font-size: 15px;
     transition: 0.3s all;
+}
+
+#mealdata-buttons{
+    display: flex;
+    width: 50%;
 }
 
 .thisNavSection{
@@ -768,7 +775,7 @@ label{
     #hamburger{
         display: block;
         float: right;
-        margin-right: 10px;
+        margin-right: 10px; 
         width: 32px;
         height: 32px;
         background: url(../images/hamburger.png) no-repeat;
@@ -779,9 +786,9 @@ label{
     .hamburger-open{
         display:none;
         position: fixed;
-        bottom: 0;
+        top: 0;
         width: 100%;
-        height: 90vh;
+        height: 500px;
         background-color: darkgrey;
     }
 
@@ -980,7 +987,13 @@ label{
     }
 
 
-
+    #userName{
+        font-size: 16px;
+        min-width: 100px;
+    
+        color: rgba(21, 12, 63, 0.459);
+        float: right;
+    }
 
 
 }
