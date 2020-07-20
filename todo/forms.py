@@ -9,7 +9,8 @@ class NancyForm(forms.ModelForm):
         fields = ['mealName', 'description', 'Ingredients',
                   'HasItamarTasted', 'Recipe', 'imagefile']
         widgets = {
-            "description": forms.Textarea(
-                attrs={"rows": "3", "cols": "40", "style":"resize:none"}
-            )
+            "description": forms.Textarea(attrs={"rows": "3", "cols": "40", "style":"resize:none"}),
+            'Ingredients':forms.Select(attrs={"id":"selectIngredients"})
         }
+        
+        

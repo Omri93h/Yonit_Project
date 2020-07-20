@@ -22,143 +22,149 @@
                 {% if user.is_authenticated %}
                 <span id="userName">{{user.username}}</span>
                 {% endif %}
-                <a href="{% url 'meals' %}" id="hamburger"></a>
+                <button id="hamburger"></button>
+                <div class="hamburger-open"></div>
                 <a href="#" id=notification></a>
                 <a href="#" id=baby-nav></a>
             </div>
         </header>
-
-        <nav>
-            <ul>
-                <li class="thisNavSection"><a href="#">Itamar</a></li>
-                <li><a href="#">Calendar</a></li>
-                <li><a href="#" id="nav-meals">Meals</li>
-                <ul id="nav-meals-options">
-                    <li><a href="{% url 'meals' %}">All Meals</a></li>
-                    <li><a href="#">Upcoming Meals</a></li>
-                    <li><a href="#">Meals History</a></li>
+        <div class="table">
+            <nav>
+                <ul>
+                    <li class="thisNavSection"><a href="#">Itamar</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#" id="nav-meals">Meals</li>
+                    <ul id="nav-meals-options">
+                        <li><a href="{% url 'meals' %}">All Meals</a></li>
+                        <li><a href="#">Upcoming Meals</a></li>
+                        <li><a href="#">Meals History</a></li>
+                    </ul>
+                    <li><a href="#">Allergies</a></li>
+                    <li><a href="#">Permissions</a></li>
+                    <li><a href="#">Grocery List</a></li>
+                    <li><a href="#">Reminders</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
                 </ul>
-                <li><a href="#">Allergies</a></li>
-                <li><a href="#">Permissions</a></li>
-                <li><a href="#">Grocery List</a></li>
-                <li><a href="#">Reminders</a></li>
-                <li><a href="#">Settings</a></li>
-                {% if user.is_authenticated %}
-                <li><a id="logout" href="{% url 'logoutuser' %}">Logout</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+            </nav>
 
-        <main>
-            <div id="homepage-leftside">
-                <section id="next-meals">
-                    <h2>NEXT MEALS</h2>
-                    <div id="next-meal">
-                        <h5>1/6 Today</h5>
-                        <img src="{% static 'nancy/images/similak.png' %}" alt="next meal img" id="next-meal-img">
-                        <div id="next-meal-info">
-                            <ul>
-                                <li id="clock-icon"><b>10:00</b></li>
-                                <li id="bottle-icon">Similak</li>
-                                <li id="amount-icon">80mg</li>
-                            </ul>
+            <main>
+                <div id="homepage-leftside">
+                    <section id="next-meals">
+                        <h2>NEXT MEALS</h2>
+                        <div id="next-meal">
+                            <h5>1/6 Today</h5>
+                            <img src="{% static 'nancy/images/similak.png' %}" alt="next meal img" id="next-meal-img">
+                            <div id="next-meal-info">
+                                <ul>
+                                    <li id="clock-icon"><b>10:00</b></li>
+                                    <li id="bottle-icon">Similak</li>
+                                    <li id="amount-icon">80mg</li>
+                                </ul>
+                            </div>
+                            <p id="timer"></p>
                         </div>
-                        <p id="timer"></p>
-                    </div>
-                    <div class="upcoming-meal">
-                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} "
-                                alt="clock_icon">
-                            <h4>11:30</h4>
+                        <div class="upcoming-meal">
+                            <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} "
+                                    alt="clock_icon">
+                                <h4>11:30</h4>
+                            </div>
+                            <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} "
+                                    alt="bowl_icon">
+                                <h4>Mashed Apples</h4>
+                            </div>
+                            <img src="{% static 'nancy/images/mashed_apple_small.png' %} " class="align-self"
+                                alt="mashed_apple_small">
                         </div>
-                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} "
-                                alt="bowl_icon">
-                            <h4>Mashed Apples</h4>
+                        <div class="upcoming-meal">
+                            <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %}"
+                                    alt="clock_icon">
+                                <h4>13:30</h4>
+                            </div>
+                            <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} "
+                                    alt="bowl_icon">
+                                <h4>Mashed Potato</h4>
+                            </div>
+                            <img src="{% static 'nancy/images/mashed_potato_small.png' %} " class="align-self"
+                                alt="mashed_potato_small">
                         </div>
-                        <img src="{% static 'nancy/images/mashed_apple_small.png' %} " class="align-self"
-                            alt="mashed_apple_small">
-                    </div>
-                    <div class="upcoming-meal">
-                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %}"
-                                alt="clock_icon">
-                            <h4>13:30</h4>
+                        <div class="upcoming-meal">
+                            <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} "
+                                    alt="clock_icon">
+                                <h4>16:00</h4>
+                            </div>
+                            <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bottle_icon2.png' %} "
+                                    alt="bowl_icon">
+                                <h4>Similak</h4>
+                            </div>
+                            <img src="{% static 'nancy/images/similak_small.png' %} " class="align-self"
+                                alt="mashed_apple_small">
                         </div>
-                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bowl_icon.png' %} "
-                                alt="bowl_icon">
-                            <h4>Mashed Potato</h4>
-                        </div>
-                        <img src="{% static 'nancy/images/mashed_potato_small.png' %} " class="align-self"
-                            alt="mashed_potato_small">
-                    </div>
-                    <div class="upcoming-meal">
-                        <div class="upcoming-meal-hour"><img src="{% static 'nancy/images/clock_icon.png' %} "
-                                alt="clock_icon">
-                            <h4>16:00</h4>
-                        </div>
-                        <div class="upcoming-meal-name"><img src="{% static 'nancy/images/bottle_icon2.png' %} "
-                                alt="bowl_icon">
-                            <h4>Similak</h4>
-                        </div>
-                        <img src="{% static 'nancy/images/similak_small.png' %} " class="align-self"
-                            alt="mashed_apple_small">
-                    </div>
-                    <button class="btn-medium" id="see-all"> <b>See All</b></button>
-                </section>
-            </div>
+                        <button class="btn-medium" id="see-all"> <b>See All</b></button>
+                    </section>
+                </div>
 
-            <div id=homepage-rightside>
-                <section id="next-taste">
-                    <h2>NEXT TASTE</h2>
-                    <div id="next-taste-info">
-                        <img src="{% static 'nancy/images/pea.jpg' %} " class="align-self" alt="mashed-pea">
-                        <h3>05/29/2020</h3>
-                        <h4>Mashed Pea</h4>
+                <div id=homepage-rightside>
+                    <section id="next-taste">
+                        <h2>NEXT TASTE</h2>
+                        <div id="next-taste-info">
+                            <img src="{% static 'nancy/images/pea.jpg' %} " class="align-self" alt="mashed-pea">
+                            <h3>05/29/2020</h3>
+                            <h4>Mashed Pea</h4>
 
-                    </div>
-                </section>
-
-                <section id="info">
-                    <h2>INFO</h2>
-                    <h1>Itamar Harpaz</h1>
-                    <div id=baby-info>
-                        <span>Born at 01/17/2020</span>
-                        <span><i>4 </i>Months Old</span>
-                        <br>
-                        <span>Allergies:<br><b>Peanuts</b></span>
-                        <span>Last Meal Eated:<br><b>Gerber</b></span>
-
-                    </div>
-                </section>
-
-                <section id="relevant-news">
-                    <h2>NANCY RECOMMENDATIONS</h2>
-                    <div id="relevant-news-cards-container">
-                        <div id="relevant-news-card">
-                            <img src="{% static 'nancy/images/baby1.jpg' %} " alt="10-to-know-baby">
-                            <a href="https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/">
-                                <h4>10 Things to know about your newborn</h4>
-                                <h6>https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/</h6>
-                            </a>
                         </div>
-                        <div id="relevant-news-card">
-                            <img src="{% static 'nancy/images/baby2.jpg' %} " alt="mom-and-baby">
-                            <a href="https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/">
-                                <h4>Baby Development: Your 3-month-old</h4>
-                                <h6>https://www.webmd.com/parenting/baby/baby-development-3-months#1</h6>
-                            </a>
-                        </div>
-                        <div id="relevant-news-card">
-                            <img src="{% static 'nancy/images/baby3.jpg' %} " alt="10-to-know-baby">
-                            <a href="https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/">
-                                <h4>6 Skills All Dads Need to Have</h4>
-                                <h6>https://www.cheatsheet.com/health-fitness/6-skills-all-dads-need-to-have.html/</h6>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-                </section>
+                    </section>
 
-        </main>
-    </div>
+                    <section id="info">
+                        <h2>INFO</h2>
+                        <h1>Itamar Harpaz</h1>
+                        <div id=baby-info>
+                            <span>Born at 01/17/2020</span>
+                            <span><i>4 </i>Months Old</span>
+                            <br>
+                            <span>Allergies:<br><b>Peanuts</b></span>
+                            <span>Last Meal Eated:<br><b>Gerber</b></span>
+
+                        </div>
+                    </section>
+
+                    <section id="relevant-news">
+                        <h2>NANCY RECOMMENDATIONS</h2>
+                        <div id="relevant-news-cards-container">
+                            <div id="relevant-news-card">
+                                <img src="{% static 'nancy/images/baby1.jpg' %} " alt="10-to-know-baby">
+                                <a href="https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/">
+                                    <h4>10 Things to know about your newborn</h4>
+                                    <h6>https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/</h6>
+                                </a>
+                            </div>
+                            <div id="relevant-news-card">
+                                <img src="{% static 'nancy/images/baby2.jpg' %} " alt="mom-and-baby">
+                                <a href="https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/">
+                                    <h4>Baby Development: Your 3-month-old</h4>
+                                    <h6>https://www.webmd.com/parenting/baby/baby-development-3-months#1</h6>
+                                </a>
+                            </div>
+                            <div id="relevant-news-card">
+                                <img src="{% static 'nancy/images/baby3.jpg' %} " alt="10-to-know-baby">
+                                <a href="https://www.parents.com/baby/care/newborn/10-things-to-know-about-newborns/">
+                                    <h4>6 Skills All Dads Need to Have</h4>
+                                    <h6>https://www.cheatsheet.com/health-fitness/6-skills-all-dads-need-to-have.html/
+                                    </h6>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div><!-- table -->
+
+
+
+    </div> <!-- wrapper -->
+    <footer>
+
+    </footer>
 </body>
 
 </html>

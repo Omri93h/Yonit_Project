@@ -29,14 +29,14 @@ a{
     color: #222;
 }
 
-
-body{
-    display: flex;
-    margin: 0;
-    font-family: 'Ubuntu', sans-serif;
-    font-style: normal;
-    background-color: #f0f0f0;
-    height: 100vh;
+footer{
+    height: 100px;
+    width: 100%;
+    background-color: gray;
+    position: absolute;
+    bottom: 0;
+    display: none;
+    
 }
 
 .wrapper{
@@ -44,6 +44,15 @@ body{
     width: 100%;
     margin: 0 auto;
 }
+
+body{
+    width: 100%;
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+    background-color: #f0f0f0;
+}
+
 
 header{
     position: sticky;
@@ -60,18 +69,15 @@ header{
     background-color: white;
     box-shadow: 0px 0px 4px #222222;
     font-size: 20px;
-    /* font-family: 'Noto Sans', sans-serif; */
 }
 
 nav{
-    /* position: static; */
-    left:0;
-    height: 100%;
+    display: table-cell;
+    height: 100vh;
     width: 12vw;
     min-width: 180px;
-    float: left;
     background-color: #222222;
-    
+    padding: 0;
 }
 
 
@@ -147,34 +153,37 @@ li:hover{
 
 }
 
-main{
+.table{
     position: absolute;
-    display: inline-flex;
+    display: table;
     width: 100%;
-    height: 100%;
-    /* border: 3px solid green; */
-    /* padding-bottom: 3vh ; */
-    /* padding-top: 3vh; */
+    height: 100vh;
+    border-collapse: collapse;
     margin: 0;
+    
 }
 
+main { 
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 15px;
+}
 
 #homepage-leftside{
-    display: flex;
+    display:inline-flex;
+    width: 30vw;
     flex: 1 0 auto;
     height: 100%;
-    width: 50%;
-    margin-left: 10px;
-    margin-top: 10px;
 }
 
 #homepage-rightside{
+    display: inline-flex;
     height: 100%;
-    width: 50%;
-    margin-left: 10px;
-    display: flex;
+    margin-left: 15px;
     flex-flow: column;
-    margin-top: 10px;
+    flex: 1 0 auto;
 }
 
 main section{
@@ -184,29 +193,30 @@ main section{
     background-color: white;
     width: 38vw;
     text-align: center;
-    /* margin-top: 2%; */
 }
 
 
 #next-meals{
-    width: 100%;
-    max-width: 50vw;
+    box-sizing: border-box;
+    padding: 1%;
+    display: block;
+    width: 44vw;
+    min-width: 300px;
     height:100%;
-    min-height: 80vh;
+    flex: 0 1 auto;
 }
 
 #next-taste{
     height: 40%;
-    min-width: 40vh;
     margin-bottom: 10px;
     min-height: 15vh;
 }
 
 
 #info{
-    flex: 1 1 auto;
-    height: 100%;
-    /* min-height: 25vh; */
+    flex: 0 1 auto;
+    height: 60%;
+    min-height: 20vh;
     margin-bottom: 10px;
     min-height: 15vh;
 } 
@@ -391,10 +401,6 @@ main section{
 /*___________ ------------------- PAGE2---------------------____________ */
 
 
-#button-createMeal span{
-    font-size: larger;
-}
-
 
 
 
@@ -415,15 +421,13 @@ main section{
 }
 
 #mealCards{
-    
     margin: 0 auto;
-    margin-top: 10%;
-    width: 75vw;
-    height: 437px;
+    width: 100%;
+    height: 100%;
     position: flex;
     flex-wrap: wrap;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 1%;
+    box-sizing: border-box;
 }
 
 
@@ -448,7 +452,6 @@ main section{
 .mealCard a{ 
     display: block;  
     width: 150px;
-    height: 150px;
     margin: 0px auto;
     background-repeat: no-repeat;
 }
@@ -544,6 +547,18 @@ label{
     opacity: 50%;
 }
 
+.btn-small{
+    display: block;
+    margin: 0 auto;
+    background-color: #222222;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: small;
+    padding: 5px 8px;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
 .btn-medium{
     display: block;
@@ -617,14 +632,19 @@ label{
 
 /* ________________________Login_________________________ */
 
+#main-login{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
 
 #login-section{
     padding:0 25px 5px;
-    height: 380px;
+    height: 400px;
     width: 350px;
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 80px;
     right: 0;
     left: 0;
     margin: auto;
@@ -642,7 +662,7 @@ label{
     left:50%;
     transform: translateX(-50%); 
     -webkit-transform: translateX(-50%);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 
 }
 
@@ -664,25 +684,29 @@ label{
     
     main{
         margin-top: 10px;
-        border: 0px;
-        width: fit-content;
-        padding: 0;
         text-align: center;
+        display: block;
+        margin: 10 auto;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .table{
+        width: 100%;
     }
 
     main section {
-        width: 90vw;
+        width: 99vw;
         margin: 0 auto;
         height:90vh;
-            
     }
 
     #homepage-leftside{
-        width: 90vw;
-        text-align: center;
-        float: none;
-        height: 90vh;
-        margin: 0 !important ;
+    display:block;
+    width: 100%;
+    flex: 1 0 auto;
+    height: 100%;
+
     }
 
     #homepage-rightside{
@@ -690,9 +714,8 @@ label{
     }
 
     #next-meal{
-        height: 140px;
-        /* max-width:98vw */
-        padding: 0;
+        width: auto;
+        height: 150px;
     }
 
     #hamburger{
@@ -703,6 +726,15 @@ label{
         height: 32px;
         background: url(../images/hamburger.png) no-repeat;
         margin-top: 4px;
+        border: 0;
+    }
+
+    .hamburger-open{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 90vh;
+        background-color: darkgrey;
     }
 
 
@@ -841,7 +873,13 @@ label{
     }
 
     #next-meals{
-        max-width: 95vw;
+        margin: 0 auto;
+        position: relative;
+        flex: 0;
+        padding: 0;
+        min-width: 0;
+        width: 100%;
+        margin: 0;
     }
 
     .mealCard .delButton{
@@ -892,9 +930,7 @@ label{
         display: none;
     }
 
-    #next-taste{
-     display: none;
-     
-    }
+
+
 
 }

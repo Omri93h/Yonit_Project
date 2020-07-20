@@ -56,11 +56,86 @@ def homepage(request):
 
 ################################## end of HOMEPAGE #################################
 
-################################## MEALS #################################
+################################## MEALS ###########################################
+check='checked="checked"'
+uncheck=""
+class radioCheck :
+    def __init__(self):
+        self.UP = uncheck
+        self.DOWN = check
+        
+        self.YES = uncheck
+        self.NO = uncheck
+        self.ALL = check
+
+    def UPchecked(self):
+        self.UP = check
+        self.DOWN = uncheck
+
+    def DOWNchecked(self):
+        self.UP = uncheck
+        self.DOWN = check  
+
+    def YESchecked(self):
+        self.YES = check
+        self.NO = uncheck
+        self.ALL = uncheck
+
+    def NOchecked(self):
+        self.YES = uncheck
+        self.NO = check
+        self.ALL = uncheck
+
+    def ALLchecked(self):
+        self.YES = uncheck
+        self.NO = uncheck
+        self.ALL = check
+
+select = 'selected'
+unselect =  ""
+class ShowSelectInput:
+    def __init__(self):
+        self.MYmeals = unselect
+        self.ALLusersMeals = select   
+
+    def selectMYmeals(self):
+        self.MYmeals = select
+        self.ALLusersMeals = unselect 
+
+    def selectALLusersMeals(self):     
+        self.MYmeals = unselect
+
+
 @login_required
 def meals(request):
-    meal = Nancy.objects.filter(user_id = request.user).order_by('-dateCreated')
-    return render(request, 'nancy/meals.html',{'allmeals':meal})
+    checkingControl = radioCheck()
+    selectcontrol = ShowSelectInput()
+    mealsSort=request.GET.get("sort")
+    if (mealsSort == "UP"):
+        checkingControl.UPchecked()
+        order = '-dateCreated' 
+    else:
+        order = 'dateCreated'
+        checkingControl.DOWNchecked()
+    mealsfilter=request.GET.get("filter")   
+    if (mealsfilter=="YES"):
+        checkingControl.YESchecked()
+        meal = Nancy.objects.filter(HasItamarTasted = 1,).order_by(order)
+    elif (mealsfilter=="NO"):
+        checkingControl.NOchecked()
+        meal = Nancy.objects.filter(HasItamarTasted = 0).order_by(order)  
+    else : 
+        checkingControl.ALLchecked()
+        meal= Nancy.objects.all().order_by(order)    
+    selectMealCreator=request.GET.get("userMeals") 
+    selectcontrol.selectALLusersMeals()
+    if (selectMealCreator=="myMeals"):
+        selectcontrol.selectMYmeals()
+        meal=meal.filter(user_id = request.user)
+    #filter(user_id = request.user)
+  
+    return render(request, 'nancy/meals.html',{'allmeals':meal ,'checked':checkingControl , 'select':selectcontrol })
+
 
 @login_required
 def mealData(request, meal_pk):

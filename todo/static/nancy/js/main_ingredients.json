@@ -1,0 +1,49 @@
+{
+    "mainingrieadient":[
+        {
+            "name": "Carrot",
+            "carbs":"9.6",
+            "fat":"0.2",
+            "protein":"0.9",
+            "vitamins": "A, C, D, E, K",
+            "minerals": "Calsium, Phosphorus,iron,magnesium",
+            "callories":"41"
+        },
+        {
+            "name": "Apple",
+            "carbs":"13.8",
+            "fat":"0.2",
+            "protein":"0.3",
+            "vitamins": "A, B1, B2, B6, C",
+            "minerals": "Iron,Calcium,Copper,Magnezium",
+            "callories":"52" 
+        },
+        {
+            "name": "Potato",
+            "carbs":"20.1",
+            "fat":"0.1",
+            "protein":"1.9",
+            "vitamins": "C, B6",
+            "minerals": "Poasium,Phosphores,Magnese",
+            "callories":"161"
+        },
+        {
+            "name": "Cabbage",
+            "carbs":"13",
+            "fat":"0",
+            "protein":"1",
+            "vitamins": "C ,K ,B6",
+            "minerals": "Magnesium,Calcium,Potasium",
+            "callories":"22"
+        },
+        {
+            "name": "Almond",
+            "carbs":"21",
+            "fat":"49",
+            "protein":"21",
+            "vitamins": "A,E",
+            "minerals": "Manganese,Magnezium,Calcium",
+            "callories":"579"
+        }
+    ]
+}
